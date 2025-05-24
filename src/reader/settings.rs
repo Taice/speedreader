@@ -126,8 +126,7 @@ impl SettingsMenu {
                     KeyCode::Right => self.increase(),
                     KeyCode::Left => self.decrease(),
                     KeyCode::Char(' ') => match self.index {
-                        0 => (),
-                        1 => (),
+                        1 => self.settings.should_loop = !self.settings.should_loop,
                         2 => self.get_text_cb(),
                         _ => (),
                     },
