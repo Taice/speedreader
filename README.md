@@ -2,6 +2,7 @@
 - ts pretty cool ngl its like you click enter once opening the app right and then you like get to read shit faster cause like your eyes don't have to stray so like its better yk and its like cli so you dont need a gui thing right so its pretty lit ngl
 
 ## Compiling and running
+- you need rust btw
 ```
 git clone https://github.com/taice/speedreader
 cd speedreader
