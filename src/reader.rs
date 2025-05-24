@@ -51,7 +51,6 @@ impl Reader {
         while !self.exit {
             terminal.draw(|frame| self.draw(frame))?;
             if self.handle_input()? {
-                self.settings.word_index = self.settings.word_index.saturating_sub(1);
                 self.paused = true;
                 self.open_settings(terminal)?;
                 self.update_wpm();

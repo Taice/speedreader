@@ -125,7 +125,12 @@ impl SettingsMenu {
                     KeyCode::Down => self.down(),
                     KeyCode::Right => self.increase(),
                     KeyCode::Left => self.decrease(),
-                    KeyCode::Char(' ') => self.get_text_cb(),
+                    KeyCode::Char(' ') => match self.index {
+                        0 => (),
+                        1 => (),
+                        2 => self.get_text_cb(),
+                        _ => (),
+                    },
                     KeyCode::Enter => {
                         if self.index == 2 {
                             self.view_words = true;
