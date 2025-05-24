@@ -18,7 +18,7 @@ cp target/release/speedreader $HOME/.cargo/bin
 - saving data in a data directory regardless of platform
 - settings for selecting speed and stuff
 
-### how to use this
+### how to use ts
 - press enter to load text from clipboard
 - press space to pause/play
 - press esc to toggle the settings menu, navigate/change with arrow keys
