@@ -17,3 +17,9 @@ cp target/release/speedreader $HOME/.cargo/bin
 ## Sick Features
 - saving data in a data directory regardless of platform
 - settings for selecting speed and stuff
+
+### how to use this
+- press enter to load text from clipboard
+- press space to pause/play
+- press esc to toggle the settings menu, navigate/change with arrow keys
+- press b/B to go back a word or a sentence respectively
