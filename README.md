@@ -1,0 +1,16 @@
+# Speed Reader
+- ts pretty cool ngl its like you click enter once opening the app right and then you like get to read shit faster cause like your eyes don't have to stray so like its better yk and its like cli so you dont need a gui thing right so its pretty lit ngl
+
+# Compiling and running
+```
+git clone https://github.com/taice/speedreader
+cd speedreader
+cargo build --release
+
+# if you want to copy the binary to path
+cp target/release/speedreader $HOME/.cargo/bin
+
+# otherwise just run it like this
+./target/release/speedreader
+```
+
