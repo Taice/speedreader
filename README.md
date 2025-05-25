@@ -24,3 +24,4 @@ cp target/release/speedreader $HOME/.cargo/bin
 - press space to pause/play
 - press esc to toggle the settings menu, navigate/change with arrow keys
 - press b/B to go back a word or a sentence respectively
+- in the settings you can select the word at which the reader should start by doing enter on the words box

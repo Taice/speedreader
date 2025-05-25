@@ -279,7 +279,7 @@ impl Widget for &SettingsMenu {
                     },
                 ))
                 .render(vert[2], buf);
-            Paragraph::new("Space to copy words from clipboard")
+            Paragraph::new("Words (space to paste)")
                 .block(Block::bordered().border_set(border::PLAIN).border_style(
                     if self.index == 2 {
                         Color::Green
@@ -305,19 +305,19 @@ pub fn text_to_sv(text: &str) -> Vec<String> {
 fn get_save_file() -> Option<String> {
     let dirs = BaseDirs::new()?;
     let dir = dirs.data_dir();
-    Some(dir.to_str()?.to_owned() + "/SpeedReader/settings.json")
+    Some(dir.join("SpeedReader/settings.json").to_str()?.to_owned())
 }
 
 fn get_dir() -> Option<String> {
     let dirs = BaseDirs::new()?;
     let dir = dirs.data_dir();
-    Some(dir.to_str()?.to_owned() + "/SpeedReader")
+    Some(dir.join("SpeedReader").to_str()?.to_owned())
 }
 
 fn get_log_file() -> Option<String> {
     let dirs = BaseDirs::new()?;
     let dir = dirs.data_dir();
-    Some(dir.to_str()?.to_owned() + "/SpeedReader/logs.txt")
+    Some(dir.join("SpeedReader/logs.txt").to_str()?.to_owned())
 }
 
 fn write_log(log: String) {
