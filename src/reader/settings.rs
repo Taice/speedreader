@@ -4,8 +4,9 @@ use ratatui::{
     DefaultTerminal, Frame,
     crossterm::event::{self, KeyCode},
     layout::{Alignment, Constraint, Direction, Layout},
-    style::{Color, Stylize},
+    style::{Color, Style, Stylize},
     symbols::border,
+    text::{Line, Span},
     widgets::{Block, Paragraph, Widget, Wrap},
 };
 use serde::{Deserialize, Serialize};
@@ -154,22 +155,23 @@ impl SettingsMenu {
 
     fn increase(&mut self) {
         if self.view_words {
+            if self.settings.word_index < self.settings.words.len() - 1 {
+                self.settings.word_index += 1;
+            }
             return;
         }
         match self.index {
             0 => self.settings.wpm += 10,
             1 => self.settings.should_loop = !self.settings.should_loop,
-            // 2 => {
-            //     if self.settings.word_index < self.settings.words.len() - 1 {
-            //         self.settings.word_index += 1;
-            //     }
-            // }
             _ => (),
         }
     }
 
     fn decrease(&mut self) {
         if self.view_words {
+            if self.settings.word_index > 0 {
+                self.settings.word_index -= 1;
+            }
             return;
         }
         match self.index {
@@ -179,11 +181,6 @@ impl SettingsMenu {
                 }
             }
             1 => self.settings.should_loop = !self.settings.should_loop,
-            // 2 => {
-            //     if self.settings.word_index > 0 {
-            //         self.settings.word_index -= 1;
-            //     }
-            // }
             _ => (),
         }
     }
@@ -211,7 +208,21 @@ impl Widget for &SettingsMenu {
         Self: Sized,
     {
         if self.view_words {
-            Paragraph::new(self.settings.words.join(" "))
+            let mut vec: Vec<Span> = vec![];
+
+            for (i, x) in self.settings.words.iter().enumerate() {
+                let string = x.to_owned() + " ";
+                if i == self.settings.word_index {
+                    vec.push(Span::styled(x, Style::default().bg(Color::DarkGray)));
+                    vec.push(Span::raw(" "));
+                } else {
+                    vec.push(Span::raw(string));
+                };
+            }
+
+            let line = Line::from(vec);
+
+            Paragraph::new(line)
                 .wrap(Wrap { trim: true })
                 .block(
                     Block::bordered()

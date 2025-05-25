@@ -173,24 +173,16 @@ impl Widget for &Reader {
     where
         Self: Sized,
     {
-        let hort = Layout::default()
-            .direction(Direction::Horizontal)
-            .constraints([
-                Constraint::Percentage(0),   // Space on the left
-                Constraint::Percentage(100), // Centered widget area
-                Constraint::Min(0),          // Space on the right
-            ])
-            .split(area);
         let vert = Layout::default()
             .direction(Direction::Vertical)
             .constraints([
-                Constraint::Percentage(49),
+                Constraint::Min(0),
                 Constraint::Length(1),
                 Constraint::Min(0),
                 Constraint::Length(1),
                 Constraint::Length(1),
             ])
-            .split(hort[1]);
+            .split(area);
 
         let current = Block::bordered()
             .border_set(border::DOUBLE)
@@ -198,7 +190,7 @@ impl Widget for &Reader {
             .title_style(Color::White)
             .title_alignment(Alignment::Center)
             .border_style(Color::White);
-        current.render(hort[1], buf);
+        current.render(area, buf);
 
         let word = self.curr_word();
         Paragraph::new(format!("wpm: {}", self.settings.wpm))
